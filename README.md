@@ -13,6 +13,7 @@ This is the repository for my booking and reservations project
 
 Frontend
 
+- [Bootstrap](https://getbootstrap.com/) - v5.0
 - [vanillajs-datepicker](https://github.com/mymth/vanillajs-datepicker) - v1.1.4
 - [notie](https://github.com/jaredreich/notie)
 - [sweetalert2](https://github.com/sweetalert2/sweetalert2) -v10

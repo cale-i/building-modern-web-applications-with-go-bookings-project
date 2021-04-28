@@ -10,3 +10,9 @@ This is the repository for my booking and reservations project
 - [alex edwards SCS](https://github.com/alexedwards/scs) session management - v2.4.0
 - [chi router](https://github.com/go-chi/chi) - v1.5.4
 - [nosurf](https://github.com/justinas/nosurf) - v1.1.1
+
+Frontend
+
+- [vanillajs-datepicker](https://github.com/mymth/vanillajs-datepicker) - v1.1.4
+- [notie](https://github.com/jaredreich/notie)
+- [sweetalert2](https://github.com/sweetalert2/sweetalert2) -v10

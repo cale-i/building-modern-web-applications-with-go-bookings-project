@@ -1,31 +1,269 @@
 {{define "base"}}
-    <!doctype html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Document</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-              integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
-              crossorigin="anonymous">
+<!doctype html>
+<html lang="en">
 
-        {{block "css" .}}
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        {{end}}
-    </head>
-    <body>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/css/datepicker.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/css/datepicker-bs4.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css"> -->
+    <!-- when type="text/css, error occurred" -->
+    <link rel="stylesheet" type="text/plain" href="https://unpkg.com/notie/dist/notie.min.css">
+
+    <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+    <style>
+    </style>
+    <title>Hello, world!</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Rooms
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/generals-quarters">General's Quarters</a></li>
+                            <li><a class="dropdown-item" href="/majors-suite">Major's Suite</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/search-availability" tabindex="-1" aria-disabled="true">Book Now</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact" tabindex="-1" aria-disabled="true">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
     {{block "content" .}}
 
     {{end}}
 
+    <div class="row my-footer">
+        <div class="col">
+            Left
+        </div>
+        <div class="col">
+            Middle
+        </div>
+        <div class="col">
+            Right
+        </div>
+        <div class="col">
 
-    {{block "js" .}}
+        </div>
+    </div>
 
-    {{end}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/js/datepicker-full.min.js"></script>
+    <script src="https://unpkg.com/notie"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-    </body>
-    </html>
+
+{{block "js" .}}
+
+{{end}}
+
+    <script>
+        let attention = Pronpt();
+
+        (function () {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        let forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+
+
+
+
+    function notify(msg, msgType){
+        notie.alert({
+            type: msgType, // optional, default = 4, enum: [1, 2, 3, 4, 5, 'success', 'warning', 'error', 'info', 'neutral']
+            text: msg,
+            // stay: Boolean, // optional, default = false
+            // time: Number, // optional, default = 3, minimum = 1,
+            // position: String // optional, default = 'top', enum: ['top', 'bottom']
+        })
+    }
+
+    function notifyModal(title,html,icon, confirmButtonText){
+        Swal.fire({
+            title,
+            // text,
+            html,
+            icon,
+            confirmButtonText,
+        })
+    }
+
+    function Pronpt() {
+        let toast = function(c) {
+            console.log(c)
+            const {
+                title = "",
+                icon = "success",
+                position = "top-end"
+            } = c;
+            console.log(title)
+
+            const Toast = Swal.mixin({
+                toast: true,
+                title,
+                position,
+                icon,
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                // icon: 'success',
+                // title: 'Signed in successfully'
+            })
+
+
+
+        }
+        let success = function(c) {
+            const {
+                title = "",
+                text = "",
+                icon = "success",
+                position = "top-end",
+                footer = "",
+            } = c;
+            Swal.fire({
+                title,
+                icon,
+                text,
+                footer,
+            })
+        }
+        let error = function(c) {
+            const {
+                title = "",
+                text = "",
+                icon = "error",
+                position = "top-end",
+                footer = "",
+            } = c;
+            Swal.fire({
+                title,
+                icon,
+                text,
+                footer,
+            })
+        }
+
+        async function custom(c) {
+            const {
+                html = "",
+                title = "",
+            } = c;
+
+            const { value: result } = await Swal.fire({
+                title,
+                html,
+                    // '<input id="swal-input1" class="swal2-input">' +
+                    // '<input id="swal-input2" class="swal2-input">',
+                backdrop: true,
+                focusConfirm: false,
+                showCancelButton: true,
+                willOpen: () => {
+                    if (c.willOpen !== undefined) 
+                    c.willOpen();
+                },
+                preConfirm: () => {
+                    return [
+                        document.getElementById('start-date').value,
+                        document.getElementById('end-date').value
+                    ]
+                },
+                didOpen: () => {
+                    if (c.didOpen !== undefined)
+                        c.didOpen();
+                },
+            })
+
+            if (result) {
+                if (result.dismiss !== Swal.DismissReason.cancel){
+                    if (result.value !== "") {
+                        if (c.callback !== undefined){
+                            c.callback(result);
+
+                        }
+                    } else {
+                        c.callback(false);
+                    }
+
+                } else {
+                    console.log("cancel")
+                    c.callback(false);
+                }
+            }
+        }
+
+
+
+        return {
+            toast,
+            success,
+            error,
+            custom,
+        }
+    }
+
+
+    </script>
+
+</body>
+
+</html>
+
 {{end}}

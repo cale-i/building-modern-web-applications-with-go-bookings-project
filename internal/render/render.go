@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"path/filepath"
 
-	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/pkg/config"
-	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/pkg/models"
+	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/internal/config"
+	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/internal/models"
 	"github.com/justinas/nosurf"
 )
 

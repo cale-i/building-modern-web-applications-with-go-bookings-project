@@ -3,8 +3,8 @@ package main
 import (
 	"net/http"
 
-	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/pkg/config"
-	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/pkg/handlers"
+	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/internal/config"
+	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/internal/handlers"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 )

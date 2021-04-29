@@ -6,9 +6,9 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/pkg/config"
-	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/pkg/models"
-	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/pkg/render"
+	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/internal/config"
+	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/internal/models"
+	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/internal/render"
 )
 
 // Repo the repository used by the handlers

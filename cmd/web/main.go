@@ -7,9 +7,9 @@ import (
 	"time"
 
 	"github.com/alexedwards/scs/v2"
-	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/pkg/config"
-	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/pkg/handlers"
-	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/pkg/render"
+	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/internal/config"
+	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/internal/handlers"
+	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/internal/render"
 )
 
 const portNumber = ":8080"

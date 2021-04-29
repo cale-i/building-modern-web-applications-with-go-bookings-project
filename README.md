@@ -10,6 +10,7 @@ This is the repository for my booking and reservations project
 - [alex edwards SCS](https://github.com/alexedwards/scs) session management - v2.4.0
 - [chi router](https://github.com/go-chi/chi) - v1.5.4
 - [nosurf](https://github.com/justinas/nosurf) - v1.1.1
+- [govalidator](https://github.com/asaskevich/govalidator) -11.0.0
 
 Frontend
 

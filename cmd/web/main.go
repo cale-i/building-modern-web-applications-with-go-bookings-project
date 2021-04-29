@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/gob"
 	"fmt"
 	"log"
 	"net/http"
@@ -9,6 +10,7 @@ import (
 	"github.com/alexedwards/scs/v2"
 	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/internal/config"
 	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/internal/handlers"
+	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/internal/models"
 	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/internal/render"
 )
 
@@ -18,6 +20,25 @@ var app config.AppConfig
 var session *scs.SessionManager
 
 func main() {
+	err := run()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Printf("Starting application on port %s", portNumber)
+
+	srv := &http.Server{
+		Addr:    portNumber,
+		Handler: routes(&app),
+	}
+
+	err = srv.ListenAndServe()
+	log.Fatal(err)
+}
+
+func run() error {
+	// what am I going to put in the sessiion
+	gob.Register(models.Reservation{})
 
 	// change this to true when in production
 	app.InProduction = false
@@ -33,6 +54,7 @@ func main() {
 	tempCache, err := render.CreateTemplateCache()
 	if err != nil {
 		log.Fatal("cannot create template cache")
+		return err
 	}
 
 	app.TemplateCache = tempCache
@@ -43,13 +65,5 @@ func main() {
 
 	render.NewTemplates(&app)
 
-	fmt.Printf("Starting application on port %s", portNumber)
-
-	srv := &http.Server{
-		Addr:    portNumber,
-		Handler: routes(&app),
-	}
-
-	err = srv.ListenAndServe()
-	log.Fatal(err)
+	return nil
 }

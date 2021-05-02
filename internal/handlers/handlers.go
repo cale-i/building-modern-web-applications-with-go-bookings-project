@@ -8,10 +8,13 @@ import (
 	"net/http"
 
 	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/internal/config"
+	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/internal/driver"
 	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/internal/forms"
 	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/internal/helpers"
 	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/internal/models"
 	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/internal/render"
+	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/internal/repository"
+	"github.com/cale-i/building-modern-web-applications-with-go-bookings-project/internal/repository/dbrepo"
 )
 
 // Repo the repository used by the handlers
@@ -20,12 +23,14 @@ var Repo *Repository
 // Repository is the repository type
 type Repository struct {
 	App *config.AppConfig
+	DB  repository.DatabaseRepo
 }
 
 // NewRepo creates a new repository
-func NewPepo(a *config.AppConfig) *Repository {
+func NewPepo(a *config.AppConfig, db *driver.DB) *Repository {
 	return &Repository{
 		App: a,
+		DB:  dbrepo.NewPostgresRepo(db.SQL, a),
 	}
 }
 

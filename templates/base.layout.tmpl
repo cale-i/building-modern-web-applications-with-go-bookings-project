@@ -86,37 +86,35 @@
     <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/js/datepicker-full.min.js"></script>
     <script src="https://unpkg.com/notie"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="/static/js/app.js"></script>
 
 
 {{block "js" .}}
 
 {{end}}
 
-    <script>
-        let attention = Pronpt();
+<script>
+    let attention = Pronpt();
 
-        (function () {
-        'use strict'
+    (function () {
+    'use strict'
 
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        let forms = document.querySelectorAll('.needs-validation')
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    let forms = document.querySelectorAll('.needs-validation')
 
-        // Loop over them and prevent submission
-        Array.prototype.slice.call(forms)
-            .forEach(function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
 
-                    form.classList.add('was-validated')
-                }, false)
-            })
-        })()
-
-
-
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
 
     function notify(msg, msgType){
         notie.alert({
@@ -148,130 +146,7 @@
     {{with .Warning}}
     notify("{{.}}", "warning")
     {{end}}
-
-    function Pronpt() {
-        let toast = function(c) {
-            console.log(c)
-            const {
-                title = "",
-                icon = "success",
-                position = "top-end"
-            } = c;
-            console.log(title)
-
-            const Toast = Swal.mixin({
-                toast: true,
-                title,
-                position,
-                icon,
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            })
-
-            Toast.fire({
-                // icon: 'success',
-                // title: 'Signed in successfully'
-            })
-
-
-
-        }
-        let success = function(c) {
-            const {
-                title = "",
-                text = "",
-                icon = "success",
-                position = "top-end",
-                footer = "",
-            } = c;
-            Swal.fire({
-                title,
-                icon,
-                text,
-                footer,
-            })
-        }
-        let error = function(c) {
-            const {
-                title = "",
-                text = "",
-                icon = "error",
-                position = "top-end",
-                footer = "",
-            } = c;
-            Swal.fire({
-                title,
-                icon,
-                text,
-                footer,
-            })
-        }
-
-        async function custom(c) {
-            const {
-                html = "",
-                title = "",
-            } = c;
-
-            const { value: result } = await Swal.fire({
-                title,
-                html,
-                    // '<input id="swal-input1" class="swal2-input">' +
-                    // '<input id="swal-input2" class="swal2-input">',
-                backdrop: true,
-                focusConfirm: false,
-                showCancelButton: true,
-                willOpen: () => {
-                    if (c.willOpen !== undefined) 
-                    c.willOpen();
-                },
-                preConfirm: () => {
-                    return [
-                        document.getElementById('start-date').value,
-                        document.getElementById('end-date').value
-                    ]
-                },
-                didOpen: () => {
-                    if (c.didOpen !== undefined)
-                        c.didOpen();
-                },
-            })
-
-            if (result) {
-                if (result.dismiss !== Swal.DismissReason.cancel){
-                    if (result.value !== "") {
-                        if (c.callback !== undefined){
-                            c.callback(result);
-
-                        }
-                    } else {
-                        c.callback(false);
-                    }
-
-                } else {
-                    console.log("cancel")
-                    c.callback(false);
-                }
-            }
-        }
-
-
-
-        return {
-            toast,
-            success,
-            error,
-            custom,
-        }
-    }
-
-
-    </script>
+</script>
 
 </body>
 

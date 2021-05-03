@@ -36,40 +36,9 @@
 {{end}}
 
 {{define "js"}}
+    <script src="/static/js/app.js"></script>
     <script>
-        document.getElementById("check-availability-button").addEventListener("click", function(){
-            // notify("This is my message", "warning")
-            // notifyModal("title", "<em>hello, world</em","success", "My Text for the button")
-                // attention.success({title: "Hello, world",footer:"footer"}); // msg => title
-            let title = "Choose your dates"
-            let html =`
-            <form 
-                id="check-availability-form"
-                action=""
-                method="POST"
-                novalidate
-                class="needs-validation">
-                
-                <div class="row">
-                    <div class="col">
-                        <div class="row" id="reservation-dates-modal">
-                            <div class="col">
-                                <div class="mb-3">
-                                    <input disabled required type="text" class="form-control" id="start-date" name="start-date" placeholder="Arrival">
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="mb-3">
-                                    <input disabled required type="text" class="form-control" id="end-date" name="end-date" placeholder="Departure">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            `
-            attention.custom({title,html}); // msg => title
-                // attention.toast({title: "Hello, world", icon: "error"}); // msg => title
-        })
+        let roomID = "2"
+        CheckAvailability(roomID, {{.CSRFToken}})
     </script>
 {{end}}

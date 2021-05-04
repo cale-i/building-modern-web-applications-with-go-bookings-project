@@ -19,6 +19,17 @@ func NewPostgresRepo(conn *sql.DB, a *config.AppConfig) repository.DatabaseRepo 
 	}
 }
 
+type testDBRepo struct {
+	App *config.AppConfig
+	DB  *sql.DB
+}
+
+func NewTestingRepo(a *config.AppConfig) repository.DatabaseRepo {
+	return &testDBRepo{
+		App: a,
+	}
+}
+
 // sample for MariaDB
 // type mariaDBRepo struct {
 // 	App *config.AppConfig

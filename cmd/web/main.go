@@ -83,7 +83,7 @@ func run() (*driver.DB, error) {
 	app.TemplateCache = tempCache
 	app.UseCache = false
 
-	repo := handlers.NewPepo(&app, db)
+	repo := handlers.NewRepo(&app, db)
 	handlers.NewHandlers(repo)
 	render.NewRenderer(&app)
 	helpers.NewHelpers(&app)

@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"testing"
 	"time"
 
 	"github.com/alexedwards/scs/v2"
@@ -24,7 +25,7 @@ var session *scs.SessionManager
 var pathToTemplate = "./../../templates"
 var functions = template.FuncMap{}
 
-func getRoutes() http.Handler {
+func TestMain(m *testing.M) {
 	// what am I going to put in the sessiion
 	gob.Register(models.Reservation{})
 
@@ -53,11 +54,15 @@ func getRoutes() http.Handler {
 	app.TemplateCache = tempCache
 	app.UseCache = true
 
-	repo := NewPepo(&app)
+	repo := NewTestingRepo(&app) // ここでテスト用のconfigとdbを指定
 	NewHandlers(repo)
 
 	render.NewRenderer(&app)
 
+	os.Exit(m.Run())
+}
+
+func getRoutes() http.Handler {
 	mux := chi.NewRouter()
 
 	mux.Use(middleware.Recoverer)

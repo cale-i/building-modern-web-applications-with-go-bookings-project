@@ -1,5 +1,5 @@
 // base.page
-function Pronpt() {
+function Prompt() {
     let toast = function(c) {
         console.log(c)
         const {

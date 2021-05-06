@@ -153,22 +153,12 @@ func (m *Repository) PostReservation(w http.ResponseWriter, r *http.Request) {
 	reservation.Email = r.Form.Get("email")
 	reservation.Phone = r.Form.Get("phone")
 
-	// reservation := models.Reservation{
-	// 	FirstName: r.Form.Get("first_name"),
-	// 	LastName:  r.Form.Get("last_name"),
-	// 	Email:     r.Form.Get("email"),
-	// 	Phone:     r.Form.Get("phone"),
-	// 	StartDate: startDate,
-	// 	EndDate:   endDate,
-	// 	RoomID:    roomID,
-	// }
-
 	form := forms.New(r.PostForm)
 
 	// form.Has("first_name", r)
 	form.Required("first_name", "last_name", "email", "phone")
 	form.MinLength("first_name", 2)
-	form.MinLength("first_name", 2)
+	form.MinLength("last_name", 2)
 	form.IsEmail("email")
 
 	if !form.Valid() {
@@ -176,7 +166,7 @@ func (m *Repository) PostReservation(w http.ResponseWriter, r *http.Request) {
 		data["reservation"] = reservation
 
 		m.App.Session.Put(r.Context(), "error", "invalid data")
-		http.Redirect(w, r, "/", http.StatusSeeOther)
+		// http.Redirect(w, r, "/", http.StatusSeeOther)
 
 		render.Template(w, r, "make-reservation.page.tmpl", &models.TemplateData{
 			Form: form,

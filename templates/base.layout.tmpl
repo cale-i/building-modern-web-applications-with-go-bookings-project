@@ -13,6 +13,7 @@
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/css/datepicker.min.css"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/css/datepicker-bs4.min.css">
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css">
+    
     <!-- when type="text/css, error occurred" -->
     <!-- <link rel="stylesheet" type="text/plain" href="https://unpkg.com/notie/dist/notie.min.css"> -->
 
@@ -56,6 +57,25 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/contact" tabindex="-1" aria-disabled="true">Contact</a>
                     </li>
+
+                    <li class="nav-item">
+                        {{if eq .IsAuthenticated 1}}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Admin
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/admin/dashboard">Dashboard</a></li>
+                                <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
+                                </ul>
+                            </li>
+                        {{else}}
+                            <a class="nav-link" href="/user/login" tabindex="-1" aria-disabled="true">Login</a>
+                        {{end}}
+                    </li>
+
+
                 </ul>
             </div>
         </div>
@@ -96,6 +116,7 @@
 <script>
     let attention = Prompt();
 
+
     (function () {
     'use strict'
 
@@ -116,16 +137,6 @@
         })
     })()
 
-    function notify(msg, msgType){
-        notie.alert({
-            type: msgType, // optional, default = 4, enum: [1, 2, 3, 4, 5, 'success', 'warning', 'error', 'info', 'neutral']
-            text: msg,
-            // stay: Boolean, // optional, default = false
-            // time: Number, // optional, default = 3, minimum = 1,
-            // position: String // optional, default = 'top', enum: ['top', 'bottom']
-        })
-    }
-
     function notifyModal(title,html,icon, confirmButtonText){
         Swal.fire({
             title,
@@ -136,15 +147,27 @@
         })
     }
 
+
+
     {{with .Error}}
-    notify("{{.}}", "error")
+        attention.notify({
+            type: "error",
+            text: "{{.}}",
+        })
     {{end}}
 
     {{with .Flash}}
-    notify("{{.}}", "success")
+        attention.notify({
+            type: "success",
+            text: "{{.}}",
+        })
     {{end}}
+
     {{with .Warning}}
-    notify("{{.}}", "warning")
+        attention.notify({
+            type: "warning",
+            text: "{{.}}",
+        })
     {{end}}
 </script>
 

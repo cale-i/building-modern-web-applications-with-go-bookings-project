@@ -14,8 +14,9 @@
 /* override styles here */
 .notie-container {
 	box-shadow: none;
+	z-index: 100000;
 }
 
 .datepicker {
-	z-index: 1000000;
+	z-index: 100000;
 }

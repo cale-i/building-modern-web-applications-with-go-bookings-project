@@ -108,11 +108,23 @@ function Prompt() {
         }
     }
 
+    let notify = function(c) {
+        const {
+            type= "",
+            text= ""
+        } = c
+        notie.alert({
+            type,
+            text,
+        })
+    }
+
     return {
         toast,
         success,
         error,
         custom,
+        notify,
     }
 }
 

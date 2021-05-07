@@ -21,6 +21,8 @@ Frontend
 - [vanillajs-datepicker](https://github.com/mymth/vanillajs-datepicker) - v1.1.4
 - [notie](https://github.com/jaredreich/notie)
 - [sweetalert2](https://github.com/sweetalert2/sweetalert2) -v10
+- [RoyalUI-Free-Bootstrap-Admin-Template](https://github.com/BootstrapDash/RoyalUI-Free-Bootstrap-Admin-Template) admin dashboard
+- [Simple-DataTables](https://github.com/fiduswriter/Simple-DataTables)
 
 Misc
 
